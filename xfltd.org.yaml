@@ -1,5 +1,4 @@
 # 注意规则在满足自己需求情况下，尽量做到精简，不要过度复杂，以免影响性能。
-
 # 机场订阅
 proxy-providers:
   hongxingdl.com:
@@ -10,7 +9,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-    proxy: 直连
+      proxy: 直连
 
 # 节点信息
 proxies:
@@ -129,11 +128,14 @@ proxy-groups:
       - 美国节点
       - 全部节点
       - 直连
-  - name: 📹 YouTube
+
+  - name: YouTube
     <<: *pr
-  - name: 🍀 Google
+
+  - name: Google
     <<: *pr
-  - name: 🤖 ChatGPT
+
+  - name: ChatGPT
     type: select
     proxies:
       - AI自动
@@ -142,96 +144,119 @@ proxy-groups:
       - 美国自动
       - 日本节点
       - 美国节点
-  - name: 👨🏿💻 GitHub
+
+  - name: GitHub
     <<: *pr
-  - name: 🐬 OneDrive
+
+  - name: OneDrive
     type: select
     proxies:
       - 直连
       - 默认代理
-  - name: 🪟 Microsoft
+
+  - name: Microsoft
     type: select
     proxies:
       - 直连
       - 默认代理
-  - name: 🎵 TikTok
+
+  - name: TikTok
     <<: *pr
-  - name: 📲 Telegram
+
+  - name: Telegram
     <<: *pr
-  - name: 🎥 NETFLIX
+
+  - name: NETFLIX
     <<: *pr
-  - name: ✈️ Speedtest
+
+  - name: Speedtest
     <<: *pr
-  - name: 💶 PayPal
+
+  - name: PayPal
     <<: *pr
-  - name: 🍎 Apple
+
+  - name: Apple
     type: select
     proxies:
       - 直连
       - 默认代理
-  - name: 🎯 直连
+
+  - name: 直连组
     type: select
     proxies:
       - 直连
       - 默认代理
-  - name: 🐟 漏网之鱼
+
+  - name: 漏网之鱼
     <<: *pr
+
   - name: 香港节点
     type: select
     include-all: true
     filter: "(?i)港|hk|hongkong|hong kong"
+
   - name: 日本节点
     type: select
     include-all: true
     filter: "(?i)日|jp|japan"
+
   - name: 新加坡自动
     type: url-test
     include-all: true
     filter: "(?i)坡|sg|singapore"
+
   - name: AI自动
     type: url-test
     include-all: true
     filter: "(?i)gpt|ai"
+
   - name: 美国节点
     type: select
     include-all: true
     filter: "(?i)美|us|unitedstates|united states"
+
   - name: 香港故转
     type: fallback
     include-all: true
     tolerance: 20
     interval: 300
     filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"
+
   - name: 日本故转
     type: fallback
     include-all: true
     tolerance: 20
     interval: 300
     filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$"
+
   - name: 香港自动
     type: url-test
     include-all: true
     tolerance: 20
     interval: 300
     filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"
+
   - name: 日本自动
     type: url-test
     include-all: true
     tolerance: 20
     interval: 300
     filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$"
+
   - name: 美国自动
     type: url-test
     include-all: true
     tolerance: 20
     interval: 300
     filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"
+
   - name: 自动选择
     type: url-test
     include-all: true
     tolerance: 20
     interval: 300
     filter: "^((?!(直连)).)*$"
+
   - name: 全部节点
     type: select
     include-all: true
@@ -240,45 +265,47 @@ proxy-groups:
 rules:
   - DOMAIN-SUFFIX,qichiyu.com,默认代理
   - RULE-SET,private_domain,直连
-  - RULE-SET,apple_domain,🍎 Apple
+  - RULE-SET,apple_domain,Apple
   - RULE-SET,proxylite,默认代理
-  - RULE-SET,ai,🤖 ChatGPT
-  - RULE-SET,github_domain,👨🏿💻 GitHub
-  - RULE-SET,youtube_domain,📹 YouTube
-  - RULE-SET,google_domain,🍀 Google
-  - RULE-SET,onedrive_domain,🐬 OneDrive
-  - RULE-SET,microsoft_domain,🪟 Microsoft
-  - RULE-SET,tiktok_domain,🎵 TikTok
-  - RULE-SET,speedtest_domain,✈️ Speedtest
-  - RULE-SET,telegram_domain,📲 Telegram
-  - RULE-SET,netflix_domain,🎥 NETFLIX
-  - RULE-SET,paypal_domain,💶 PayPal
+  - RULE-SET,ai,ChatGPT
+  - RULE-SET,github_domain,GitHub
+  - RULE-SET,youtube_domain,YouTube
+  - RULE-SET,google_domain,Google
+  - RULE-SET,onedrive_domain,OneDrive
+  - RULE-SET,microsoft_domain,Microsoft
+  - RULE-SET,tiktok_domain,TikTok
+  - RULE-SET,speedtest_domain,Speedtest
+  - RULE-SET,telegram_domain,Telegram
+  - RULE-SET,netflix_domain,NETFLIX
+  - RULE-SET,paypal_domain,PayPal
   - RULE-SET,gfw_domain,默认代理
   - RULE-SET,geolocation-!cn,默认代理
-  - RULE-SET,cn_domain,🎯 直连
-  - RULE-SET,google_ip,🍀 Google,no-resolve
-  - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
-  - RULE-SET,telegram_ip,📲 Telegram,no-resolve
-  - RULE-SET,cn_ip,🎯 直连
-  - MATCH,🐟 漏网之鱼
+  - RULE-SET,cn_domain,直连组
+  - RULE-SET,google_ip,Google,no-resolve
+  - RULE-SET,netflix_ip,NETFLIX,no-resolve
+  - RULE-SET,telegram_ip,Telegram,no-resolve
+  - RULE-SET,cn_ip,直连组
+  - MATCH,漏网之鱼
 
-# 规则集
 rule-anchor:
-  ip: &ip
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-  domain: &domain
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-  class: &class
-    type: http
-    interval: 86400
-    behavior: classical
-    format: text
+
+ip: &ip
+  type: http
+  interval: 86400
+  behavior: ipcidr
+  format: mrs
+
+domain: &domain
+  type: http
+  interval: 86400
+  behavior: domain
+  format: mrs
+
+class: &class
+  type: http
+  interval: 86400
+  behavior: classical
+  format: text
 
 rule-providers:
   private_domain:
